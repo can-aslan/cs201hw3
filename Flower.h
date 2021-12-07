@@ -1,4 +1,6 @@
-class Flower{
+// Yağız Can Aslan 22001943 CS201-3
+
+class Flower {
     public:
         Flower();
         Flower(string flowerName);
