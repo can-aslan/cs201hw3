@@ -1,5 +1,6 @@
 // Yağız Can Aslan 22001943 CS201-3
 
+#include <bits/stdc++.h> // Ask TA if it is allowed!!!
 #include <iostream>
 #include <string>
 #include "Flower.h"
@@ -13,7 +14,7 @@ public:
         / ~Flower();
         + bool isEmpty() const;
         + int getLength() const ;
-        x bool add(string feature);
+        + bool add(string feature);
         x bool remove(string feature);
         x string printFlower() const;
     private:
@@ -32,13 +33,14 @@ Flower::Flower() {
     head = NULL;
 }
 
-Flower::Flower(string flowerName) {
+Flower::Flower( string flowerName) {
+    transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower); // Change flowerName to all lowercase
     this->flowerName = flowerName;
     size = 0;
     head = NULL;
 }
 
-Flower::Flower(const Flower& aFlower) {
+Flower::Flower( const Flower& aFlower) {
     flowerName = aFlower.flowerName;
     size = aFlower.size;
     *head = *aFlower.head;
@@ -58,4 +60,29 @@ bool Flower::isEmpty() const {
 
 int Flower::getLength() const {
     return size;
+}
+
+bool Flower::add( string feature) {
+    transform( feature.begin(), feature.end(), feature.begin(), ::tolower); // Change feature to all lowercase
+
+    if ( head == NULL ) { // If the Feature List is empty
+        head = new FeatureNode();
+        head->feature = feature;
+        head->next = NULL;
+
+        return true;
+    }
+
+    FeatureNode temp;
+    temp = *head;
+
+    // If the Feature List is not empty
+    while ( temp.feature < feature ) {
+        if ( temp.next != NULL ) {
+            temp = *temp.next;
+        }
+        else {
+            
+        }
+    }
 }
