@@ -62,7 +62,7 @@ int Flower::getLength() const {
     return size;
 }
 
-bool Flower::add( string feature) {
+bool Flower::add( string feature) { // Check "Feature List not empty" case later
     transform( feature.begin(), feature.end(), feature.begin(), ::tolower); // Change feature to all lowercase
 
     if ( head == NULL ) { // If the Feature List is empty
@@ -73,16 +73,29 @@ bool Flower::add( string feature) {
         return true;
     }
 
-    FeatureNode temp;
-    temp = *head;
+    FeatureNode* temp = new FeatureNode();
+    temp = head;
 
     // If the Feature List is not empty
-    while ( temp.feature < feature ) {
-        if ( temp.next != NULL ) {
-            temp = *temp.next;
+    while ( temp->feature < feature ) {
+        if ( temp->next != NULL ) {
+            temp = temp->next;
         }
-        else {
-            
+        else { // If there are no features left, add the feature to the end of the list
+            temp->next = new FeatureNode();
+            temp->next->feature = feature;
+            temp->next->next = NULL;
+
+            return true;
         }
     }
+
+    // If the algorithm reaches here, it means that there are still features in the list but
+    // the alphabetical order is here for the desired feature
+    FeatureNode* tempNext = temp->next;
+    temp->next = new FeatureNode();
+    temp->next->feature = feature;
+    temp->next->next = tempNext;
+
+    return true;
 }
