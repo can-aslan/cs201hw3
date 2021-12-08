@@ -45,7 +45,11 @@ Flower::Flower(const Flower& aFlower) {
 }
 
 Flower::~Flower() {
-    delete head;
+    while ( head->next != NULL ) {
+        FeatureNode* temp = head->next;
+        delete head;
+        head = temp;
+    }
 }
 
 bool Flower::isEmpty() const {

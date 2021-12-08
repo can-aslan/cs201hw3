@@ -2,7 +2,16 @@
 using namespace std;
 #include "FlowerLibrary.h"
 
-int main(){
+
+#include "Flower.h" // REMOVE LATER!!!!!!!!!!!!!!
+
+int main() {
+    Flower* f = new Flower();
+    cout << "trial" << endl;
+
+    delete f;
+    cout << "trial" << endl;
+    /*
     FlowerLibrary L;
     L.listFlowers();
 
@@ -95,6 +104,7 @@ int main(){
     cout << endl;
 
     L.findFlowers("white");
-    cout << "Test successfully completed!"
+    cout << "Test successfully completed!";
     return 0;
+    */
 }
