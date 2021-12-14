@@ -62,9 +62,7 @@ int Flower::getLength() const {
     return size;
 }
 
-bool Flower::add( string feature) { // Check "Feature List not empty" case later
-    transform( feature.begin(), feature.end(), feature.begin(), ::tolower); // Change feature to all lowercase
-
+bool Flower::doesFeatureExist(string feature) {
     // Linear pass over the Linked List to see if the feature already exists (for simplicity)
     FeatureNode* checkFeature = new FeatureNode();
     checkFeature->feature = head->feature;
@@ -76,9 +74,20 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
             checkFeature->next = checkFeature->next->next;
         }
         else if ( checkFeature->feature == feature ) {
-            cout << feature << " already exists in " << flowerName << endl;
-            return false; // TODO: MOVE THE WARNING MESSAGE TO FLOWERLIBRARY LATER
+            return true;
         }
+    }
+
+    delete checkFeature;
+    return false;
+}
+
+bool Flower::add( string feature) { // Check "Feature List not empty" case later
+    transform( feature.begin(), feature.end(), feature.begin(), ::tolower); // Change feature to all lowercase
+
+    if ( doesFeatureExist( feature) ) {
+        cout << feature << " already exists in " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+        return false;
     }
 
     if ( head == NULL ) { // If the Feature List is empty
@@ -87,6 +96,7 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
         head->next = NULL;
 
         size++;
+        cout << feature << " is added to " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
         return true;
     }
 
@@ -104,6 +114,7 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
             temp->next->next = NULL;
 
             size++;
+            cout << feature << " is added to " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
             return true;
         }
     }
@@ -121,9 +132,34 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
     temp->next->next = tempNext;
 
     size++;
+    cout << feature << " is added to " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
     return true;
 }
 
 bool Flower::remove( string feature) {
+    if ( !doesFeatureExist( feature) ) {
+        cout << feature << " does not exist in " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+        return false;
+    }
 
+    // If the feature size is 1
+    if ( size == 1 ) {
+        delete head;
+        head = NULL;
+
+        size--;
+        cout << feature << " is removed from " << flowerName << endl;
+        return true;
+    }
+
+    // Make a linear pass over the feature list to find the desired feature to remove
+    FeatureNode* current = new FeatureNode();
+    current->feature = head->feature;
+    current->next = head->next;
+
+    for ( int i = 0; i < size; i++ ) {
+        if ( current->next ) {
+
+        }    
+    }
 }
