@@ -65,11 +65,28 @@ int Flower::getLength() const {
 bool Flower::add( string feature) { // Check "Feature List not empty" case later
     transform( feature.begin(), feature.end(), feature.begin(), ::tolower); // Change feature to all lowercase
 
+    // Linear pass over the Linked List to see if the feature already exists (for simplicity)
+    FeatureNode* checkFeature = new FeatureNode();
+    checkFeature->feature = head->feature;
+    checkFeature->next = checkFeature->next;
+
+    for ( int i = 0; i < size; i++ ) {
+        if ( checkFeature->feature != feature && checkFeature->next != NULL ) {
+            checkFeature->feature = checkFeature->next->feature;
+            checkFeature->next = checkFeature->next->next;
+        }
+        else if ( checkFeature->feature == feature ) {
+            cout << feature << " already exists in " << flowerName << endl;
+            return false; // TODO: MOVE THE WARNING MESSAGE TO FLOWERLIBRARY LATER
+        }
+    }
+
     if ( head == NULL ) { // If the Feature List is empty
         head = new FeatureNode();
         head->feature = feature;
         head->next = NULL;
 
+        size++;
         return true;
     }
 
@@ -86,6 +103,7 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
             temp->next->feature = feature;
             temp->next->next = NULL;
 
+            size++;
             return true;
         }
     }
@@ -102,5 +120,10 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
     temp->next->feature = feature;
     temp->next->next = tempNext;
 
+    size++;
     return true;
+}
+
+bool Flower::remove( string feature) {
+
 }
