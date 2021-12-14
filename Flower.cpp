@@ -152,14 +152,28 @@ bool Flower::remove( string feature) {
         return true;
     }
 
+    // Check the first node
+    if ( head->feature == feature ) {
+        FeatureNode* temp = head->next;
+        delete head;
+        head = temp;
+
+        size--;
+        cout << feature << " is removed from " << flowerName << endl;
+        return true;
+    }
+
     // Make a linear pass over the feature list to find the desired feature to remove
     FeatureNode* current = new FeatureNode();
     current->feature = head->feature;
     current->next = head->next;
 
-    for ( int i = 0; i < size; i++ ) {
-        if ( current->next ) {
+    
 
+    for ( int i = 0; i < size - 1; i++ ) {
+        if ( current->feature != feature && current->next != NULL ) {
+            current->feature = current->next->feature;
+            current->next = current->next->next;
         }    
     }
 }
