@@ -11,7 +11,7 @@ public:
         + Flower();
         + Flower(string flowerName);
         + Flower(const Flower& aFlower);
-        / ~Flower();
+        + ~Flower();
         + bool isEmpty() const;
         + int getLength() const ;
         + bool add(string feature);
@@ -92,8 +92,13 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
 
     // If the algorithm reaches here, it means that there are still features in the list but
     // the alphabetical order is here for the desired feature
-    FeatureNode* tempNext = temp->next;
+    FeatureNode* tempNext = new FeatureNode();
+    tempNext->feature = temp->next->feature;
+    tempNext->next = temp->next->next;
+
+    delete temp->next;
     temp->next = new FeatureNode();
+
     temp->next->feature = feature;
     temp->next->next = tempNext;
 
