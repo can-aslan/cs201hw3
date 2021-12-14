@@ -10,6 +10,7 @@ class Flower {
         int getLength() const ;
         bool add(string feature);
         bool remove(string feature);
+        bool doesFeatureExist(string feature);
         string printFlower() const;
     private:
         struct FeatureNode{
