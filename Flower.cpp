@@ -15,8 +15,8 @@ public:
         + bool isEmpty() const;
         + int getLength() const ;
         + bool add(string feature);
-        x bool remove(string feature);
-        x string printFlower() const;
+        + bool remove(string feature);
+        + string printFlower() const;
     private:
         struct FeatureNode{
             string feature;
@@ -192,5 +192,28 @@ bool Flower::remove( string feature) {
             cout << feature << " is removed from " << flowerName << endl;
             return true;
         }    
+    }
+}
+
+string Flower::printFlower() const {
+    if ( size < 1 ) {
+        return flowerName + ": No feature";
+    }
+    else {
+        string flowerPrint;
+        flowerPrint = flowerName + ": ";
+        
+        FeatureNode* printer = new FeatureNode();
+        printer->feature = head->feature;
+        printer->next = head->next;
+        
+        for ( int i = 0; i < (size - 1); i++ ) {
+            flowerPrint = flowerPrint + printer->feature + ", ";
+            printer->feature = printer->next->feature;
+            printer->next = printer->next->next;
+        }
+
+        flowerPrint = flowerPrint + printer->feature;
+        return flowerPrint;
     }
 }
