@@ -62,6 +62,7 @@ bool Flower::doesFeatureExist(string feature) {
             checkFeature->next = checkFeature->next->next;
         }
         else if ( checkFeature->feature == feature ) {
+            delete checkFeature;
             return true;
         }
     }
@@ -203,17 +204,17 @@ string Flower::printFlower() const {
         string flowerPrint;
         flowerPrint = flowerName + ": ";
         
-        FeatureNode* printer = new FeatureNode();
-        printer->feature = head->feature;
-        printer->next = head->next;
+        FeatureNode printer;
+        printer.feature = head->feature;
+        printer.next = head->next;
         
         for ( int i = 0; i < (size - 1); i++ ) {
-            flowerPrint = flowerPrint + printer->feature + ", ";
-            printer->feature = printer->next->feature;
-            printer->next = printer->next->next;
+            flowerPrint = flowerPrint + printer.feature + ", ";
+            printer.feature = printer.next->feature;
+            printer.next = printer.next->next;
         }
 
-        flowerPrint = flowerPrint + printer->feature;
+        flowerPrint = flowerPrint + printer.feature;
         return flowerPrint;
     }
 }
