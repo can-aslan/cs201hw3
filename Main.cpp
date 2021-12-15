@@ -6,11 +6,32 @@ using namespace std;
 #include "Flower.h" // REMOVE LATER!!!!!!!!!!!!!!
 
 int main() {
-    Flower* f = new Flower();
-    cout << "trial" << endl;
+    Flower* f = new Flower( "impostor");
+    cout << "The test has begun." << endl;
+
+    cout << f->printFlower() << endl;
+
+    f->remove( "anxiety");
+    cout << f->printFlower() << endl;
+
+    f->add( "VeNt");
+    cout << f->printFlower() << endl;
+
+    f->add( "venT");
+    cout << f->printFlower() << endl;
+
+    f->add( "amoamogus");
+    cout << f->printFlower() << endl;
+
+    f->remove( "dingding");
+    cout << f->printFlower() << endl;
+
+    f->remove( "vent");
+    cout << f->printFlower() << endl;
 
     delete f;
-    cout << "trial" << endl;
+    cout << endl;
+    cout << "Test SUCCESSFULLY completed!" << endl;
     
     /*
     FlowerLibrary L;

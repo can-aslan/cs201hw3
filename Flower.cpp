@@ -26,10 +26,15 @@ Flower::Flower( const Flower& aFlower) {
 }
 
 Flower::~Flower() {
-    while ( head->next != NULL ) {
-        FeatureNode* temp = head->next;
+    if ( size == 1 ) {
         delete head;
-        head = temp;
+    }
+    else if ( size > 1 ) {
+        while ( head->next != NULL ) {
+            FeatureNode* temp = head->next;
+            delete head;
+            head = temp;
+        }
     }
 }
 
@@ -42,6 +47,10 @@ int Flower::getLength() const {
 }
 
 bool Flower::doesFeatureExist(string feature) {
+    if ( size < 1 ) {
+        return false;
+    }
+    
     // Linear pass over the Linked List to see if the feature already exists (for simplicity)
     FeatureNode* checkFeature = new FeatureNode();
     checkFeature->feature = head->feature;
@@ -84,6 +93,7 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
 
     // If the Feature List is not empty
     while ( temp->feature < feature ) {
+        
         if ( temp->next != NULL ) {
             temp = temp->next;
         }
@@ -97,19 +107,27 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
             return true;
         }
     }
-
-    // If the algorithm reaches here, it means that there are still features in the list but
-    // the alphabetical order is here for the desired feature
+    
+    // If the algorithm reaches here, it means that the
+    // alphabetical order is here for the desired feature
     FeatureNode* tempNext = new FeatureNode();
-    tempNext->feature = temp->next->feature;
-    tempNext->next = temp->next->next;
+    
+    if ( temp->next != NULL ) {
+        tempNext->feature = temp->next->feature;
+        tempNext->next = temp->next->next;
 
-    delete temp->next;
-    temp->next = new FeatureNode();
+        delete temp->next;    
+        temp->next = new FeatureNode();
 
-    temp->next->feature = feature;
-    temp->next->next = tempNext;
-
+        temp->next->feature = feature;
+        temp->next->next = tempNext;
+    }
+    else { // If we are at the end of the list
+        temp->next = new FeatureNode();
+        temp->next->feature = feature;
+        temp->next->next = NULL;
+    }
+    
     size++;
     cout << feature << " is added to " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
     return true;
@@ -127,7 +145,7 @@ bool Flower::remove( string feature) {
         head = NULL;
 
         size--;
-        cout << feature << " is removed from " << flowerName << endl;
+        cout << feature << " is removed from " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
         return true;
     }
 
@@ -138,7 +156,7 @@ bool Flower::remove( string feature) {
         head = temp;
 
         size--;
-        cout << feature << " is removed from " << flowerName << endl;
+        cout << feature << " is removed from " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
         return true;
     }
 
@@ -168,10 +186,13 @@ bool Flower::remove( string feature) {
             delete current;
             
             size--;
-            cout << feature << " is removed from " << flowerName << endl;
+            cout << feature << " is removed from " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
             return true;
         }    
     }
+
+    cout << feature << " does not exist in " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+    return false;
 }
 
 string Flower::printFlower() const {
