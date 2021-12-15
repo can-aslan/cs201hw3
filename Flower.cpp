@@ -22,7 +22,24 @@ Flower::Flower( string flowerName) {
 Flower::Flower( const Flower& aFlower) {
     flowerName = aFlower.flowerName;
     size = aFlower.size;
-    *head = *aFlower.head;
+
+    if ( size > 1 ) {
+        head = new FeatureNode();
+        head->feature = aFlower.head->feature;
+        head->next = aFlower.head->next;
+    }
+    else if ( size == 1 ) {
+        head = new FeatureNode();
+        head->feature = aFlower.head->feature;
+        head->next = NULL;
+    }
+    else { // If size < 1
+        head = NULL;
+    }
+    
+    for ( int i = 0; i < size - 1; i++ ) {
+        
+    }
 }
 
 Flower::~Flower() {

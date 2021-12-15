@@ -6,8 +6,8 @@ using namespace std;
 #include "Flower.h" // REMOVE LATER!!!!!!!!!!!!!!
 
 int main() {
-    Flower* f = new Flower( "impostor");
     cout << "The test has begun." << endl;
+    Flower* f = new Flower( "impostor");
 
     cout << f->printFlower() << endl;
 
@@ -32,7 +32,22 @@ int main() {
     delete f;
     cout << endl;
     cout << "Test SUCCESSFULLY completed!" << endl;
+
+    Flower* fa = new Flower( "aaa");
+    cout << "hi 1" << endl;
+    Flower fb = *fa;
+    cout << "hi 2" << endl;
+
+    cout << fa->printFlower() << endl;
+    cout << "hi 3" << endl;
+    cout << fb.printFlower() << endl;
+    cout << "hi 4" << endl;
+
+    delete fa;
+    cout << "hi 5" << endl;
+    cout << fb.printFlower() << endl;
     
+    cout << "hi 6" << endl;
     /*
     FlowerLibrary L;
     L.listFlowers();
