@@ -1,4 +1,6 @@
 // Yağız Can Aslan 22001943 CS201-3
+#include <string>
+using namespace std;
 
 class Flower {
     public:
