@@ -90,6 +90,7 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
     }
 
     FeatureNode* temp = new FeatureNode();
+    delete temp;
     temp = head;
 
     // If the Feature List is not empty
@@ -112,7 +113,8 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
     // If the algorithm reaches here, it means that the
     // alphabetical order is here for the desired feature
     FeatureNode* tempNext = new FeatureNode();
-    
+    delete tempNext;
+
     if ( temp->next != NULL ) {
         tempNext->feature = temp->next->feature;
         tempNext->next = temp->next->next;
