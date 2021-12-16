@@ -69,6 +69,10 @@ Flower::~Flower() {
     }
 }
 
+string Flower::getName() const {
+    return flowerName;
+}
+
 bool Flower::isEmpty() const {
     return size;
 }
