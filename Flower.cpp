@@ -19,13 +19,14 @@ Flower::Flower( string flowerName) {
     head = NULL;
 }
 
-Flower::Flower( const Flower& aFlower): size( aFlower.size ), flowerName( aFlower.flowerName ) {
-/*    size = aFlower.size;
+Flower::Flower( const Flower& aFlower) {
+    flowerName = aFlower.flowerName;
+    size = aFlower.size;
 
     if ( size > 1 ) {
         head = new FeatureNode();
         head->feature = aFlower.head->feature;
-        head->next = aFlower.head->next;
+        *(head->next) = *(aFlower.head->next);
     }
     else if ( size == 1 ) {
         head = new FeatureNode();
@@ -36,25 +37,9 @@ Flower::Flower( const Flower& aFlower): size( aFlower.size ), flowerName( aFlowe
         head = NULL;
     }
     
+    FeatureNode* newFeature = new FeatureNode();
     for ( int i = 0; i < size - 1; i++ ) {
         
-    }
-*/
-    if ( aFlower.head == NULL ) // If the left flower's feature list is empty
-        head = NULL;  
-    else { // If the left flower's feature list is NOT empty
-        // Copy the first feature node
-        head = new FeatureNode();
-        head->feature = aFlower.head->feature;
-
-        // Copy the rest of the list
-        FeatureNode *newPtr = head;
-        for ( FeatureNode *origPtr = aFlower.head->next; origPtr != NULL; origPtr = origPtr->next ) {
-            newPtr->next = new FeatureNode();
-            newPtr = newPtr->next;
-            newPtr->feature = origPtr->feature;
-        }
-        newPtr->next = NULL;
     }
 }
 
