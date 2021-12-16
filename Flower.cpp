@@ -19,7 +19,7 @@ Flower::Flower( string flowerName) {
     head = NULL;
 }
 
-Flower::Flower( const Flower& aFlower) {
+Flower::Flower( const Flower& aFlower) { // Deep copy
     flowerName = aFlower.flowerName;
     size = aFlower.size;
 
@@ -247,5 +247,42 @@ string Flower::printFlower() const {
 
         flowerPrint = flowerPrint + printer.feature;
         return flowerPrint;
+    }
+}
+
+Flower& Flower::operator=( const Flower& right) { // Deep copy
+    flowerName = right.flowerName;
+    size = right.size;
+
+    if ( size > 1 ) {
+        head = new FeatureNode();
+        head->feature = right.head->feature;
+           
+        FeatureNode* current;
+        FeatureNode* currentAFlower;
+
+        current = head;
+        currentAFlower = right.head;
+
+        for ( int i = 0; i < (size - 1); i++ ) {
+            current->next = new FeatureNode();
+            current->next->feature = currentAFlower->next->feature;
+
+            if ( currentAFlower->next != NULL ) {
+                currentAFlower = currentAFlower->next;
+            }
+
+            current = current->next;
+        }
+        
+        current = NULL;
+    }
+    else if ( size == 1 ) {
+        head = new FeatureNode();
+        head->feature = right.head->feature;
+        head->next = NULL;
+    }
+    else { // If size < 1, in other words, if the list is empty
+        head = NULL;
     }
 }

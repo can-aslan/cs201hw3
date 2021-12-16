@@ -33,9 +33,36 @@ FlowerList::FlowerList() {
 
 FlowerList::FlowerList( const FlowerList& aList) { // Deep copy
     size = aList.size;
-    
-    for ( int i = 0; i < size; i++ ) {
-        FlowerNode* addThis = new FlowerNode();
+
+    if ( size > 1 ) {
+        head = new FlowerNode();
+        head->f = aList.head->f;
+           
+        FlowerNode* current;
+        FlowerNode* currentAFlower;
+
+        current = head;
+        currentAFlower = aList.head;
+
+        for ( int i = 0; i < (size - 1); i++ ) {
+            current->next = new FlowerNode();
+            current->next->f = currentAFlower->next->f;
+
+            if ( currentAFlower->next != NULL ) {
+                currentAFlower = currentAFlower->next;
+            }
+
+            current = current->next;
+        }
         
+        current = NULL;
+    }
+    else if ( size == 1 ) {
+        head = new FlowerNode();
+        head->f = aList.head->f;
+        head->next = NULL;
+    }
+    else { // If size < 1, in other words, if the list is empty
+        head = NULL;
     }
 }

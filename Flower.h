@@ -14,6 +14,7 @@ class Flower {
         bool remove(string feature);
         bool doesFeatureExist(string feature);
         string printFlower() const;
+        Flower& operator=(const Flower& right);
     private:
         struct FeatureNode{
             string feature;
