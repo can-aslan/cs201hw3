@@ -31,6 +31,19 @@ FlowerList::FlowerList() {
     head = NULL;
 }
 
+FlowerList::~FlowerList() {
+    if ( size == 1 ) {
+        delete head;
+    }
+    else if ( size > 1 ) {
+        while ( head != NULL ) {
+            FlowerNode* temp = head->next;
+            delete head;
+            head = temp;
+        }
+    }
+}
+
 FlowerList::FlowerList( const FlowerList& aList) { // Deep copy
     size = aList.size;
 
