@@ -26,20 +26,24 @@ Flower::Flower( const Flower& aFlower) {
     if ( size > 1 ) {
         head = new FeatureNode();
         head->feature = aFlower.head->feature;
-        *(head->next) = *(aFlower.head->next);
+    
+        FeatureNode* newFeature = head;
+        for ( FeatureNode* current = aFlower.head->next; current != NULL; current = current->next ) {
+            FeatureNode* featureToCopy = new FeatureNode();
+            newFeature->next = featureToCopy;
+            featureToCopy->feature = current->feature;
+            newFeature = newFeature->next;
+        }
+
+        newFeature->next = NULL;
     }
     else if ( size == 1 ) {
         head = new FeatureNode();
         head->feature = aFlower.head->feature;
         head->next = NULL;
     }
-    else { // If size < 1
+    else { // If size < 1, in other words, if the list is empty
         head = NULL;
-    }
-    
-    FeatureNode* newFeature = new FeatureNode();
-    for ( int i = 0; i < size - 1; i++ ) {
-        
     }
 }
 

@@ -33,7 +33,48 @@ int main() {
     cout << endl;
     cout << "Test SUCCESSFULLY completed!" << endl;
 
+    // empty
+    Flower* fe = new Flower( "0");
+
+    cout << "hi 1" << endl;
+    Flower ff = *fe;
+    cout << "hi 2" << endl;
+
+    cout << fe->printFlower() << endl;
+    cout << "hi 3" << endl;
+    cout << ff.printFlower() << endl;
+    cout << "hi 4" << endl;
+
+    delete fe;
+    cout << "hi 5" << endl;
+    cout << ff.printFlower() << endl;
+    
+    cout << "hi 6" << endl;
+
+    // single size
+    Flower* fc = new Flower( "a");
+    fc->add( "singl");
+
+    cout << "hi 1" << endl;
+    Flower fd = *fc;
+    cout << "hi 2" << endl;
+
+    cout << fc->printFlower() << endl;
+    cout << "hi 3" << endl;
+    cout << fd.printFlower() << endl;
+    cout << "hi 4" << endl;
+
+    delete fc;
+    cout << "hi 5" << endl;
+    cout << fd.printFlower() << endl;
+    
+    cout << "hi 6" << endl;
+
+    // multi size
     Flower* fa = new Flower( "aaa");
+    fa->add( "ft1");
+    fa->add( "ft0");
+
     cout << "hi 1" << endl;
     Flower fb = *fa;
     cout << "hi 2" << endl;
