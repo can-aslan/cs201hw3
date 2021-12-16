@@ -23,20 +23,29 @@ Flower::Flower( const Flower& aFlower) {
     flowerName = aFlower.flowerName;
     size = aFlower.size;
 
-    if ( size > 1 ) { // leak
+    if ( size > 1 ) {
         head = new FeatureNode();
         head->feature = aFlower.head->feature;
-    
-        FeatureNode* newFeature = head;
-        for ( FeatureNode* current = aFlower.head->next; current != NULL; current = current->next ) {
-            FeatureNode* featureToCopy = new FeatureNode();
-            newFeature->next = featureToCopy;
-            featureToCopy->feature = current->feature;
-            newFeature = newFeature->next;
-        }
+           
+        FeatureNode* current;
+        FeatureNode* currentAFlower;
 
-        newFeature->next = NULL;
-    } // leak end
+        current = head;
+        currentAFlower = aFlower.head;
+
+        for ( int i = 0; i < (size - 1); i++ ) {
+            current->next = new FeatureNode();
+            current->next->feature = currentAFlower->next->feature;
+
+            if ( currentAFlower->next != NULL ) {
+                currentAFlower = currentAFlower->next;
+            }
+
+            current = current->next;
+        }
+        
+        current = NULL;
+    }
     else if ( size == 1 ) {
         head = new FeatureNode();
         head->feature = aFlower.head->feature;
@@ -52,7 +61,7 @@ Flower::~Flower() {
         delete head;
     }
     else if ( size > 1 ) {
-        while ( head->next != NULL ) {
+        while ( head != NULL ) {
             FeatureNode* temp = head->next;
             delete head;
             head = temp;
@@ -111,9 +120,7 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
         return true;
     }
 
-    FeatureNode* temp = new FeatureNode();
-    delete temp;
-    temp = head;
+    FeatureNode* temp = head;
 
     // If the Feature List is not empty
     while ( temp->feature < feature ) {
