@@ -23,7 +23,7 @@ Flower::Flower( const Flower& aFlower) {
     flowerName = aFlower.flowerName;
     size = aFlower.size;
 
-    if ( size > 1 ) {
+    if ( size > 1 ) { // leak
         head = new FeatureNode();
         head->feature = aFlower.head->feature;
     
@@ -36,7 +36,7 @@ Flower::Flower( const Flower& aFlower) {
         }
 
         newFeature->next = NULL;
-    }
+    } // leak end
     else if ( size == 1 ) {
         head = new FeatureNode();
         head->feature = aFlower.head->feature;
