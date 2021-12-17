@@ -14,8 +14,8 @@ class FlowerList {
         + bool isEmpty() const;
         + int getLength() const;
         bool retrieve(string flowerName, Flower& flower) const;
-        bool add(string flowerName);
-        bool remove(string flowerName);
+        + bool add(string flowerName);
+        + bool remove(string flowerName);
     private:
         struct FlowerNode{
             Flower f;
@@ -94,7 +94,7 @@ bool FlowerList::doesFlowerExist(string flowerName) {
         return false;
     }
     
-    // Linear pass over the Linked List to see if the feature already exists (for simplicity)
+    // Linear pass over the Linked List to see if the flower already exists (for simplicity)
     FlowerNode* checkFlower = new FlowerNode();
     checkFlower->f = head->f;
     checkFlower->next = head->next;
@@ -236,5 +236,36 @@ bool FlowerList::remove( string flowerName) {
     }
 
     cout << flowerName << " cannot be removed because it's not in the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+    return false;
+}
+
+bool FlowerList::retrieve( string flowerName, Flower& flower) const {
+    if ( size < 1 ) {
+        return false;
+    }
+
+    // Linear pass over the Linked List to see if the flower already exists (for simplicity)
+    FlowerNode* checkFlower = new FlowerNode();
+    checkFlower->f = head->f;
+    checkFlower->next = head->next;
+
+    for ( int i = 0; i < size; i++ ) {
+        if ( checkFlower->f.getName() != flowerName && checkFlower->next != NULL ) {
+            checkFlower->f = checkFlower->next->f;
+            checkFlower->next = checkFlower->next->next;
+        }
+        else if ( checkFlower->f.getName() == flowerName ) {
+            if ( &flower != NULL ) {
+                delete &flower;
+                flower = checkFlower->f;
+            }
+            else {
+                flower = checkFlower->f;
+            }
+            return true;
+        }
+    }
+
+    delete checkFlower;
     return false;
 }
