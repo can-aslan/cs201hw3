@@ -3,10 +3,16 @@ using namespace std;
 //#include "FlowerLibrary.h" // UNCOMMENT LATER!!!!!!
 
 
-#include "Flower.h" // REMOVE LATER!!!!!!!!!!!!!!
+#include "FlowerList.h" // REMOVE LATER!!!!!!!!!!!!!!
 
 int main() {
     cout << "The test has begun." << endl;
+    
+    FlowerList list;
+
+    
+    cout << "Test SUCCESSFULLY completed!" << endl;
+    /*
     Flower* f = new Flower( "impostor");
 
     cout << f->printFlower() << endl;
@@ -89,7 +95,7 @@ int main() {
     cout << fb.printFlower() << endl;
     
     cout << "hi 6" << endl;
-    
+    */
     /*
     FlowerLibrary L;
     L.listFlowers();
