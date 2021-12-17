@@ -17,6 +17,11 @@ int main() {
     list.add( "amogus");
     list.printFlowers();
 
+    Flower f;
+    list.retrieve( "amogus", f);
+    f.add( "impostor");
+    list.printFlowers();
+
     cout << "Test SUCCESSFULLY completed!" << endl;
     /*
     Flower* f = new Flower( "impostor");
