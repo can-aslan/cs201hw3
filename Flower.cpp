@@ -89,7 +89,7 @@ bool Flower::doesFeatureExist(string feature) {
     // Linear pass over the Linked List to see if the feature already exists (for simplicity)
     FeatureNode* checkFeature = new FeatureNode();
     checkFeature->feature = head->feature;
-    checkFeature->next = checkFeature->next;
+    checkFeature->next = head->next;
 
     for ( int i = 0; i < size; i++ ) {
         if ( checkFeature->feature != feature && checkFeature->next != NULL ) {
@@ -289,4 +289,6 @@ Flower& Flower::operator=( const Flower& right) { // Deep copy
     else { // If size < 1, in other words, if the list is empty
         head = NULL;
     }
+
+    return *this;
 }

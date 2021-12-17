@@ -95,91 +95,91 @@ bool FlowerList::doesFlowerExist(string flowerName) {
     }
     
     // Linear pass over the Linked List to see if the feature already exists (for simplicity)
-    FlowerNode* checkFeature = new FlowerNode();
-    checkFeature->f = head->f;
-    checkFeature->next = checkFeature->next;
+    FlowerNode* checkFlower = new FlowerNode();
+    checkFlower->f = head->f;
+    checkFlower->next = head->next;
 
     for ( int i = 0; i < size; i++ ) {
-        if ( checkFeature->f != f && checkFeature->next != NULL ) {
-            checkFeature->f = checkFeature->next->f;
-            checkFeature->next = checkFeature->next->next;
+        if ( checkFlower->f.getName() != flowerName && checkFlower->next != NULL ) {
+            checkFlower->f = checkFlower->next->f;
+            checkFlower->next = checkFlower->next->next;
         }
-        else if ( checkFeature->f == f ) {
-            delete checkFeature;
+        else if ( checkFlower->f.getName() == flowerName ) {
+            delete checkFlower;
             return true;
         }
     }
 
-    delete checkFeature;
+    delete checkFlower;
     return false;
 }
 
-bool Flower::add( string feature) { // Check "Feature List not empty" case later
-    transform( feature.begin(), feature.end(), feature.begin(), ::tolower); // Change feature to all lowercase
+bool FlowerList::add( string flowerName) { // Check "Feature List not empty" case later
+    transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower); // Change flowerName to all lowercase
 
-    if ( doesFeatureExist( feature) ) {
-        cout << feature << " already exists in " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+    if ( doesFlowerExist( flowerName) ) {
+        cout << flowerName << " cannot be added into the library because it already exists." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
         return false;
     }
 
-    if ( head == NULL ) { // If the Feature List is empty
-        head = new FeatureNode();
-        head->feature = feature;
+    if ( head == NULL ) { // If the Flower List is empty
+        head = new FlowerNode();
+        head->f = *(new Flower( flowerName));
         head->next = NULL;
 
         size++;
-        cout << feature << " is added to " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+        cout << flowerName << " has been added into the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
         return true;
     }
 
-    FeatureNode* temp = head;
+    FlowerNode* temp = head;
 
-    // If the Feature List is not empty
-    while ( temp->feature < feature ) {
+    // If the Flower List is not empty
+    while ( temp->f.getName() < flowerName ) {
         
         if ( temp->next != NULL ) {
             temp = temp->next;
         }
-        else { // If there are no features left, add the feature to the end of the list
-            temp->next = new FeatureNode();
-            temp->next->feature = feature;
+        else { // If there are no flowers left, add the feature to the end of the list
+            temp->next = new FlowerNode();
+            temp->next->f = *(new Flower( flowerName));
             temp->next->next = NULL;
 
             size++;
-            cout << feature << " is added to " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+            cout << flowerName << " has been added into the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
             return true;
         }
     }
     
     // If the algorithm reaches here, it means that the
-    // alphabetical order is here for the desired feature
-    FeatureNode* tempNext = new FeatureNode();
+    // alphabetical order is here for the desired flower
+    FlowerNode* tempNext = new FlowerNode();
     delete tempNext;
 
     if ( temp->next != NULL ) {
-        tempNext->feature = temp->next->feature;
+        tempNext->f = temp->next->f;
         tempNext->next = temp->next->next;
 
         delete temp->next;    
-        temp->next = new FeatureNode();
+        temp->next = new FlowerNode();
 
-        temp->next->feature = feature;
+        temp->next->f = *(new Flower( flowerName));
         temp->next->next = tempNext;
     }
     else { // If we are at the end of the list
-        temp->next = new FeatureNode();
-        temp->next->feature = feature;
+        temp->next = new FlowerNode();
+        temp->next->f = *(new Flower( flowerName));
         temp->next->next = NULL;
     }
     
     size++;
-    cout << feature << " is added to " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+    cout << flowerName << " has been added into the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
     return true;
 }
 
-bool Flower::remove( string feature) {
-    if ( !doesFeatureExist( feature) ) {
-        cout << feature << " does not exist in " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+bool FlowerList::remove( string flowerName) {
+    if ( !doesFlowerExist( flowerName) ) {
+        cout << flowerName << " cannot be removed because it's not in the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
         return false;
     }
 
@@ -189,52 +189,52 @@ bool Flower::remove( string feature) {
         head = NULL;
 
         size--;
-        cout << feature << " is removed from " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+        cout << flowerName << "  has been removed from the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
         return true;
     }
 
     // Check the first node
-    if ( head->feature == feature ) {
-        FeatureNode* temp = head->next;
+    if ( head->f.getName() == flowerName ) {
+        FlowerNode* temp = head->next;
         delete head;
         head = temp;
 
         size--;
-        cout << feature << " is removed from " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+        cout << flowerName << "  has been removed from the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
         return true;
     }
 
     // Make a linear pass over the feature list to find the desired feature to remove
-    FeatureNode* current = new FeatureNode();
-    FeatureNode* previous = new FeatureNode();
+    FlowerNode* current = new FlowerNode();
+    FlowerNode* previous = new FlowerNode();
 
-    previous->feature = head->feature;
+    previous->f = head->f;
     previous->next = head->next;
-    current->feature = head->next->feature;
+    current->f = head->next->f;
     current->next = head->next->next;
 
     for ( int i = 0; i < size - 1; i++ ) {
-        if ( current->feature != feature && current->next != NULL ) {
-            previous->feature = current->feature;
+        if ( current->f.getName() != flowerName && current->next != NULL ) {
+            previous->f = current->f;
             previous->next = current->next;
             
-            current->feature = current->next->feature;
+            current->f = current->next->f;
             current->next = current->next->next;
         }
-        else if ( current->feature != feature && current->next == NULL ) {
-            cout << feature << " does not exist in " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+        else if ( current->f.getName() != flowerName && current->next == NULL ) {
+            cout << flowerName << " cannot be removed because it's not in the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
             return false;
         }
-        else if ( current->feature == feature ) {
+        else if ( current->f.getName() == flowerName ) {
             previous->next = current->next;
             delete current;
             
             size--;
-            cout << feature << " is removed from " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+            cout << flowerName << "  has been removed from the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
             return true;
         }    
     }
 
-    cout << feature << " does not exist in " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+    cout << flowerName << " cannot be removed because it's not in the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
     return false;
 }
