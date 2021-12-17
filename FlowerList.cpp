@@ -247,3 +247,22 @@ bool FlowerList::retrieve( string flowerName, Flower& flower) const {
     delete checkFlower;
     return false;
 }
+
+void FlowerList::printFlowers() {
+    if ( size < 1 ) {
+        cout << "No flowers in the library." << endl;
+    }
+    else {
+        FlowerNode printer;
+        printer.f = head->f;
+        printer.next = head->next;
+        
+        for ( int i = 0; i < (size - 1); i++ ) {
+            printer.f.printFlower();
+            printer.f = printer.next->f;
+            printer.next = printer.next->next;
+        }
+
+        printer.f.printFlower();
+    }
+}
