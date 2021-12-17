@@ -9,8 +9,14 @@ int main() {
     cout << "The test has begun." << endl;
     
     FlowerList list;
+    list.printFlowers();
 
-    
+    list.add( "cornelius");
+    list.printFlowers();
+
+    list.add( "amogus");
+    list.printFlowers();
+
     cout << "Test SUCCESSFULLY completed!" << endl;
     /*
     Flower* f = new Flower( "impostor");

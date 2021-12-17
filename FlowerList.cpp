@@ -258,11 +258,11 @@ void FlowerList::printFlowers() {
         printer.next = head->next;
         
         for ( int i = 0; i < (size - 1); i++ ) {
-            printer.f.printFlower();
+            cout << printer.f.printFlower() << endl;
             printer.f = printer.next->f;
             printer.next = printer.next->next;
         }
 
-        printer.f.printFlower();
+        cout << printer.f.printFlower() << endl;
     }
 }
