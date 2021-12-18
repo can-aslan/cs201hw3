@@ -97,7 +97,6 @@ bool FlowerList::add( string flowerName) { // Check "Feature List not empty" cas
     transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower); // Change flowerName to all lowercase
 
     if ( doesFlowerExist( flowerName) ) {
-        cout << flowerName << " cannot be added into the library because it already exists." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
         return false;
     }
 
@@ -111,7 +110,6 @@ bool FlowerList::add( string flowerName) { // Check "Feature List not empty" cas
         head->next = NULL;
 
         size++;
-        cout << flowerName << " has been added into the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
         return true;
     }
 
@@ -134,7 +132,6 @@ bool FlowerList::add( string flowerName) { // Check "Feature List not empty" cas
             temp->next->next = NULL;
 
             size++;
-            cout << flowerName << " has been added into the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
             return true;
         }
     }
@@ -168,13 +165,11 @@ bool FlowerList::add( string flowerName) { // Check "Feature List not empty" cas
     }
     
     size++;
-    cout << flowerName << " has been added into the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
     return true;
 }
 
 bool FlowerList::remove( string flowerName) {
     if ( !doesFlowerExist( flowerName) ) {
-        cout << flowerName << " cannot be removed because it's not in the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
         return false;
     }
 
@@ -184,7 +179,6 @@ bool FlowerList::remove( string flowerName) {
         head = NULL;
 
         size--;
-        cout << flowerName << "  has been removed from the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
         return true;
     }
 
@@ -195,7 +189,6 @@ bool FlowerList::remove( string flowerName) {
         head = temp;
 
         size--;
-        cout << flowerName << "  has been removed from the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
         return true;
     }
 
@@ -217,7 +210,6 @@ bool FlowerList::remove( string flowerName) {
             current->next = current->next->next;
         }
         else if ( current->f.getName() != flowerName && current->next == NULL ) {
-            cout << flowerName << " cannot be removed because it's not in the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
             return false;
         }
         else if ( current->f.getName() == flowerName ) {
@@ -225,12 +217,10 @@ bool FlowerList::remove( string flowerName) {
             delete current;
             
             size--;
-            cout << flowerName << "  has been removed from the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
             return true;
         }    
     }
 
-    cout << flowerName << " cannot be removed because it's not in the library." << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
     return false;
 }
 
