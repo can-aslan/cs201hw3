@@ -1,13 +1,10 @@
 #include <iostream>
 using namespace std;
-//#include "FlowerLibrary.h" // UNCOMMENT LATER!!!!!!
-
-
-#include "FlowerList.h" // REMOVE LATER!!!!!!!!!!!!!!
+#include "FlowerLibrary.h"
 
 int main() {
     cout << "The test has begun." << endl;
-    
+    /*
     FlowerList list;
     list.printFlowers();
     cout << endl;
@@ -36,7 +33,6 @@ int main() {
 
     delete f;
     cout << "Test SUCCESSFULLY completed!" << endl;
-    /*
     Flower* f = new Flower( "impostor");
 
     cout << f->printFlower() << endl;
@@ -120,7 +116,7 @@ int main() {
     
     cout << "hi 6" << endl;
     */
-    /*
+
     FlowerLibrary L;
     L.listFlowers();
 
@@ -215,5 +211,4 @@ int main() {
     L.findFlowers("white");
     cout << "Test successfully completed!";
     return 0;
-    */
 }

@@ -85,5 +85,35 @@ void FlowerLibrary::removeFeature(string name, string feature) {
 }
 
 void FlowerLibrary::findFlowers(string feature) const {
-    FlowerList* flowersToShow = new FlowerList();
+    FlowerList flowersCopy = flowers;
+    FlowerList flowersToPrint = flowers;
+    
+    int size = flowersCopy.getLength();
+    Flower* f;
+
+    for ( int i = 0; i < size; i++ ) { // Linear pass over the copy Flower List to find desired flowers
+        if ( flowersCopy.takeByIndex( i, f) ) {
+            if ( !(f->doesFeatureExist( feature)) ) {
+                flowersToPrint.remove( f->getName());
+                size--;
+            }
+        }
+    }
+
+    if ( size == 0 ) {
+        cout << feature << " flowers: there is no such flower" << endl;
+    }
+    else {
+        cout << feature << " flowers: ";
+
+        Flower* toPrint;
+        for ( int i = 0; i < size - 1; i++ ) { // Linear pass over the to-be-printed Flower List to find desired flowers
+            flowersToPrint.takeByIndex( i, toPrint);
+            cout << toPrint->getName() << ", ";
+        }
+
+        flowersToPrint.takeByIndex( (size - 1), toPrint);
+        cout << toPrint->getName() << endl;
+    }
+    
 }

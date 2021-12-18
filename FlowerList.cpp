@@ -309,6 +309,30 @@ bool FlowerList::take( string flowerName, Flower*& flower) {
     return false;
 }
 
+bool FlowerList::takeByIndex( int indexInLinkedList, Flower*& flower) {
+    if ( size < 1 || indexInLinkedList > size ) {
+        return false;
+    }
+    
+    // Linear pass over the Linked List to see if the flower already exists (for simplicity)
+    FlowerNode* checkFlower = head;
+
+    for ( int i = 0; i < indexInLinkedList; i++ ) {
+        if ( i == indexInLinkedList ) {
+            flower = &(checkFlower->f);
+            return true;
+        }
+        else if ( checkFlower->next != NULL ) {
+            checkFlower->f = checkFlower->next->f;
+            checkFlower->next = checkFlower->next->next;
+        }
+        else {
+            delete checkFlower;
+            return false;
+        }
+    }
+}
+
 void FlowerList::printFlowers() const {
     if ( size < 1 ) {
         cout << "No flowers in the library." << endl;
