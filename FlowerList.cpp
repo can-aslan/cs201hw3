@@ -111,6 +111,8 @@ bool FlowerList::doesFlowerExistConst(string flowerName) const {
             return false;
         }
     }
+
+    return false;
 }
 
 bool FlowerList::add( string flowerName) { // Check "Flower List not empty" case later
@@ -331,4 +333,6 @@ bool FlowerList::takeByIndex( int indexInLinkedList, Flower*& flower) {
             return false;
         }
     }
+
+    return false;
 }
