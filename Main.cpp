@@ -17,11 +17,13 @@ int main() {
     list.add( "amogus");
     list.printFlowers();
 
-    Flower f;
-    list.retrieve( "amogus", f);
-    f.add( "impostor");
-    list.printFlowers();
-
+    /*Flower* f = new Flower;
+    if ( list.retrieve( "amogus", *f) ) {
+        f->add( "impostor");
+        list.printFlowers();
+    }
+    
+    delete f;*/
     cout << "Test SUCCESSFULLY completed!" << endl;
     /*
     Flower* f = new Flower( "impostor");
@@ -31,13 +33,13 @@ int main() {
     f->remove( "anxiety");
     cout << f->printFlower() << endl;
 
-    f->add( "VeNt");
+    f->add( "cornelius");
     cout << f->printFlower() << endl;
 
-    f->add( "venT");
+    f->add( "amogus");
     cout << f->printFlower() << endl;
 
-    f->add( "amoamogus");
+    f->add( "amogus");
     cout << f->printFlower() << endl;
 
     f->remove( "dingding");
@@ -49,7 +51,7 @@ int main() {
     delete f;
     cout << endl;
     cout << "Test SUCCESSFULLY completed!" << endl;
-
+    /*
     // empty
     Flower* fe = new Flower( "0");
 

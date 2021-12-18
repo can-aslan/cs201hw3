@@ -111,11 +111,13 @@ bool FlowerList::add( string flowerName) { // Check "Feature List not empty" cas
     }
 
     FlowerNode* temp = head;
-
+    FlowerNode* prev;
+    
     // If the Flower List is not empty
     while ( temp->f.getName() < flowerName ) {
         
         if ( temp->next != NULL ) {
+            prev = temp;
             temp = temp->next;
         }
         else { // If there are no flowers left, add the feature to the end of the list
@@ -131,18 +133,19 @@ bool FlowerList::add( string flowerName) { // Check "Feature List not empty" cas
     
     // If the algorithm reaches here, it means that the
     // alphabetical order is here for the desired flower
-    FlowerNode* tempNext = new FlowerNode();
-    delete tempNext;
+    FlowerNode* addThis = new FlowerNode();
+    delete addThis;
 
-    if ( temp->next != NULL ) {
-        tempNext->f = temp->next->f;
-        tempNext->next = temp->next->next;
+    if ( temp->next != NULL || size == 1 ) {
+        addThis->f = *(new Flower( flowerName));
+        addThis->next = temp;
 
-        delete temp->next;    
-        temp->next = new FlowerNode();
-
-        temp->next->f = *(new Flower( flowerName));
-        temp->next->next = tempNext;
+        if ( size == 1 ) {
+            head = addThis;
+        }
+        else {
+            prev->next = addThis;
+        }
     }
     else { // If we are at the end of the list
         temp->next = new FlowerNode();
@@ -221,30 +224,45 @@ bool FlowerList::retrieve( string flowerName, Flower& flower) const {
     if ( size < 1 ) {
         return false;
     }
-
+    cout << "hi" << endl;
     // Linear pass over the Linked List to see if the flower already exists (for simplicity)
     FlowerNode* checkFlower = new FlowerNode();
+    cout << "hi" << endl;
     checkFlower->f = head->f;
+    cout << "hi" << endl;
     checkFlower->next = head->next;
+    cout << "hi" << endl;
 
     for ( int i = 0; i < size; i++ ) {
+        cout << "i: " << i << endl;
         if ( checkFlower->f.getName() != flowerName && checkFlower->next != NULL ) {
+            cout << "if1 " << i << endl;
             checkFlower->f = checkFlower->next->f;
+            cout << "if2 " << i << endl;
             checkFlower->next = checkFlower->next->next;
+            cout << "if3 " << i << endl;
         }
         else if ( checkFlower->f.getName() == flowerName ) {
+            cout << "elseif " << i << endl;
             if ( &flower != NULL ) {
+                cout << "elseif if1" << i << endl;
                 delete &flower;
+                cout << "elseif if2" << i << endl;
                 flower = checkFlower->f;
+                cout << "elseif if3" << i << endl;
             }
             else {
+                cout << "elseif else1" << i << endl;
                 flower = checkFlower->f;
+                cout << "elseif else2" << i << endl;
             }
             return true;
         }
     }
 
+    cout << "adios 1" << endl;
     delete checkFlower;
+    cout << "adios 2" << endl;
     return false;
 }
 

@@ -125,11 +125,13 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
     }
 
     FeatureNode* temp = head;
+    FeatureNode* prev;
 
     // If the Feature List is not empty
     while ( temp->feature < feature ) {
         
         if ( temp->next != NULL ) {
+            prev = temp;
             temp = temp->next;
         }
         else { // If there are no features left, add the feature to the end of the list
@@ -145,18 +147,18 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
     
     // If the algorithm reaches here, it means that the
     // alphabetical order is here for the desired feature
-    FeatureNode* tempNext = new FeatureNode();
-    delete tempNext;
+    FeatureNode* addThis = new FeatureNode();
 
-    if ( temp->next != NULL ) {
-        tempNext->feature = temp->next->feature;
-        tempNext->next = temp->next->next;
+    if ( temp->next != NULL || size == 1 ) {
+        addThis->feature = feature;
+        addThis->next = temp;
 
-        delete temp->next;    
-        temp->next = new FeatureNode();
-
-        temp->next->feature = feature;
-        temp->next->next = tempNext;
+        if ( size == 1 ) {
+            head = addThis;
+        }
+        else {
+            prev->next = addThis;
+        }
     }
     else { // If we are at the end of the list
         temp->next = new FeatureNode();
