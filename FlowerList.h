@@ -15,7 +15,8 @@ class FlowerList {
         bool add(string flowerName);
         bool remove(string flowerName);
         bool doesFlowerExist(string flowerName);
-        void printFlowers();
+        bool doesFlowerExistConst(string flowerName) const;
+        void printFlowers() const;
     private:
         struct FlowerNode{
             Flower f;

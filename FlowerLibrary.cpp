@@ -48,11 +48,13 @@ void FlowerLibrary::removeFlower(string name) {
 }
 
 void FlowerLibrary::listFlowers() const {
-
+    flowers.printFlowers();
 }
 
 void FlowerLibrary::listFeatures(string name) const {
-
+    if ( !flowers.doesFlowerExistConst( name) ) {
+        
+    }
 }
 
 void FlowerLibrary::addFeature(string name,string feature) {

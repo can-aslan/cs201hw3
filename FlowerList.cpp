@@ -93,6 +93,26 @@ bool FlowerList::doesFlowerExist(string flowerName) {
     return false;
 }
 
+bool FlowerList::doesFlowerExistConst(string flowerName) const {
+    if ( size < 1 ) {
+        return false;
+    }
+    
+    FlowerNode* current = head;
+
+    for ( int i = 0; i < size; i++ ) {
+        if ( current->f.getName() == flowerName ) {
+            return true;
+        }
+        else if ( current->next != NULL ) {
+            current = current->next;
+        }
+        else {
+            return false;
+        }
+    }
+}
+
 bool FlowerList::add( string flowerName) { // Check "Feature List not empty" case later
     transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower); // Change flowerName to all lowercase
 
@@ -247,7 +267,7 @@ bool FlowerList::retrieve( string flowerName, Flower& flower) const {
     return false;
 }
 
-void FlowerList::printFlowers() {
+void FlowerList::printFlowers() const {
     if ( size < 1 ) {
         cout << "No flowers in the library." << endl;
     }
