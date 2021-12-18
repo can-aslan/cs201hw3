@@ -1,5 +1,6 @@
 // Yağız Can Aslan 22001943 CS201-3
 
+#include <bits/stdc++.h>
 #include "FlowerLibrary.h"
 #include <string>
 #include <iostream>
@@ -29,6 +30,8 @@ FlowerLibrary::FlowerLibrary() {
 FlowerLibrary::~FlowerLibrary() {}
 
 void FlowerLibrary::addFlower(string name) {
+    transform( name.begin(), name.end(), name.begin(), ::tolower);
+
     if ( flowers.add( name) ) {
         cout << name << " has been added into the library." << endl;
     }
@@ -38,6 +41,8 @@ void FlowerLibrary::addFlower(string name) {
 }
 
 void FlowerLibrary::removeFlower(string name) {
+    transform( name.begin(), name.end(), name.begin(), ::tolower);
+
     if ( flowers.remove( name) ) {
         cout << name << "  has been removed from the library." << endl;
     }
@@ -51,6 +56,8 @@ void FlowerLibrary::listFlowers() const {
 }
 
 void FlowerLibrary::listFeatures(string name) const {
+    transform( name.begin(), name.end(), name.begin(), ::tolower);
+
     Flower f;
 
     if ( !flowers.retrieve(name, f) ) {
@@ -62,6 +69,8 @@ void FlowerLibrary::listFeatures(string name) const {
 }
 
 void FlowerLibrary::addFeature(string name,string feature) {
+    transform( name.begin(), name.end(), name.begin(), ::tolower);
+
     Flower* f;
 
     if ( flowers.take( name, f) ) {
@@ -73,6 +82,8 @@ void FlowerLibrary::addFeature(string name,string feature) {
 }
 
 void FlowerLibrary::removeFeature(string name, string feature) {
+    transform( name.begin(), name.end(), name.begin(), ::tolower);
+
     Flower* f;
 
     if ( flowers.take( name, f) ) {
@@ -84,6 +95,8 @@ void FlowerLibrary::removeFeature(string name, string feature) {
 }
 
 void FlowerLibrary::findFlowers(string feature) const {
+    transform( feature.begin(), feature.end(), feature.begin(), ::tolower);
+
     FlowerList flowersCopy = flowers;
     FlowerList flowersToPrint = flowers;
     

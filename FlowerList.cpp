@@ -69,6 +69,8 @@ int FlowerList::getLength() const {
 }
 
 bool FlowerList::doesFlowerExist(string flowerName) {
+    transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower);
+
     if ( size < 1 ) {
         return false;
     }
@@ -94,6 +96,8 @@ bool FlowerList::doesFlowerExist(string flowerName) {
 }
 
 bool FlowerList::doesFlowerExistConst(string flowerName) const {
+    transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower);
+
     if ( size < 1 ) {
         return false;
     }
@@ -191,6 +195,8 @@ bool FlowerList::add( string flowerName) { // Check "Flower List not empty" case
 }
 
 bool FlowerList::remove( string flowerName) {
+    transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower);
+
     if ( !doesFlowerExist( flowerName) ) {
         return false;
     }
@@ -247,6 +253,8 @@ bool FlowerList::remove( string flowerName) {
 }
 
 bool FlowerList::retrieve( string flowerName, Flower& flower) const {
+    transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower);
+
     if ( size < 1 || !doesFlowerExistConst( flowerName) ) {
         return false;
     }
@@ -289,6 +297,8 @@ void FlowerList::printFlowers() const {
 }
 
 bool FlowerList::take( string flowerName, Flower*& flower) {
+    transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower);
+    
     if ( size < 1 || !doesFlowerExistConst( flowerName) ) {
         return false;
     }
