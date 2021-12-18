@@ -113,7 +113,7 @@ bool FlowerList::doesFlowerExistConst(string flowerName) const {
     }
 }
 
-bool FlowerList::add( string flowerName) { // Check "Feature List not empty" case later
+bool FlowerList::add( string flowerName) { // Check "Flower List not empty" case later
     transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower); // Change flowerName to all lowercase
 
     if ( doesFlowerExist( flowerName) ) {
@@ -245,7 +245,7 @@ bool FlowerList::remove( string flowerName) {
 }
 
 bool FlowerList::retrieve( string flowerName, Flower& flower) const {
-    if ( size < 1 ) {
+    if ( size < 1 || !doesFlowerExistConst( flowerName) ) {
         return false;
     }
     
@@ -259,6 +259,48 @@ bool FlowerList::retrieve( string flowerName, Flower& flower) const {
         }
         else if ( checkFlower->f.getName() == flowerName ) {
             flower = checkFlower->f;
+            return true;
+        }
+    }
+
+    delete checkFlower;
+    return false;
+}
+
+void FlowerList::printFlowers() const {
+    if ( size < 1 ) {
+        cout << "No flowers in the library." << endl;
+    }
+    else {
+        FlowerNode printer;
+        printer.f = head->f;
+        printer.next = head->next;
+        
+        for ( int i = 0; i < (size - 1); i++ ) {
+            cout << printer.f.printFlower() << endl;
+            printer.f = printer.next->f;
+            printer.next = printer.next->next;
+        }
+
+        cout << printer.f.printFlower() << endl;
+    }
+}
+
+bool FlowerList::take( string flowerName, Flower*& flower) {
+    if ( size < 1 || !doesFlowerExistConst( flowerName) ) {
+        return false;
+    }
+    
+    // Linear pass over the Linked List to see if the flower already exists (for simplicity)
+    FlowerNode* checkFlower = head;
+
+    for ( int i = 0; i < size; i++ ) {
+        if ( checkFlower->f.getName() != flowerName && checkFlower->next != NULL ) {
+            checkFlower->f = checkFlower->next->f;
+            checkFlower->next = checkFlower->next->next;
+        }
+        else if ( checkFlower->f.getName() == flowerName ) {
+            flower = &(checkFlower->f);
             return true;
         }
     }

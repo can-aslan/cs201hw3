@@ -52,19 +52,38 @@ void FlowerLibrary::listFlowers() const {
 }
 
 void FlowerLibrary::listFeatures(string name) const {
-    if ( !flowers.doesFlowerExistConst( name) ) {
-        
+    Flower f;
+
+    if ( !flowers.retrieve(name, f) ) {
+        cout << name << " isn't found in the library" << endl;
+    }
+    else {
+        cout << f.printFlower() << endl;
     }
 }
 
 void FlowerLibrary::addFeature(string name,string feature) {
+    Flower* f;
 
+    if ( flowers.take( name, f) ) {
+        f->add( feature);
+    }
+    else {
+        cout << name << " isn't found in the library" << endl;
+    }
 }
 
 void FlowerLibrary::removeFeature(string name, string feature) {
+    Flower* f;
 
+    if ( flowers.take( name, f) ) {
+        f->remove( feature);
+    }
+    else {
+        cout << name << " isn't found in the library" << endl;
+    }
 }
 
 void FlowerLibrary::findFlowers(string feature) const {
-
+    FlowerList* flowersToShow = new FlowerList();
 }
