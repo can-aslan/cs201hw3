@@ -10,12 +10,23 @@ int main() {
     
     FlowerList list;
     list.printFlowers();
+    cout << endl;
 
     list.add( "cornelius");
     list.printFlowers();
+    cout << endl;
 
     list.add( "amogus");
     list.printFlowers();
+    cout << endl;
+
+    list.remove( "dindin");
+    list.printFlowers();
+    cout << endl;
+
+    list.remove( "amogus");
+    list.printFlowers();
+    cout << endl;
 
     /*Flower* f = new Flower;
     if ( list.retrieve( "amogus", *f) ) {
