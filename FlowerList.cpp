@@ -332,22 +332,3 @@ bool FlowerList::takeByIndex( int indexInLinkedList, Flower*& flower) {
         }
     }
 }
-
-void FlowerList::printFlowers() const {
-    if ( size < 1 ) {
-        cout << "No flowers in the library." << endl;
-    }
-    else {
-        FlowerNode printer;
-        printer.f = head->f;
-        printer.next = head->next;
-        
-        for ( int i = 0; i < (size - 1); i++ ) {
-            cout << printer.f.printFlower() << endl;
-            printer.f = printer.next->f;
-            printer.next = printer.next->next;
-        }
-
-        cout << printer.f.printFlower() << endl;
-    }
-}
