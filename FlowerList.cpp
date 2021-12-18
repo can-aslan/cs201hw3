@@ -102,7 +102,11 @@ bool FlowerList::add( string flowerName) { // Check "Feature List not empty" cas
 
     if ( head == NULL ) { // If the Flower List is empty
         head = new FlowerNode();
-        head->f = *(new Flower( flowerName));
+
+        Flower* flwr = new Flower( flowerName);
+        head->f = *flwr;
+        delete flwr;
+
         head->next = NULL;
 
         size++;
@@ -111,18 +115,21 @@ bool FlowerList::add( string flowerName) { // Check "Feature List not empty" cas
     }
 
     FlowerNode* temp = head;
-    FlowerNode* prev;
+    FlowerNode* prev = head;
     
     // If the Flower List is not empty
     while ( temp->f.getName() < flowerName ) {
-        
         if ( temp->next != NULL ) {
             prev = temp;
             temp = temp->next;
         }
         else { // If there are no flowers left, add the feature to the end of the list
             temp->next = new FlowerNode();
-            temp->next->f = *(new Flower( flowerName));
+
+            Flower* flwr = new Flower( flowerName);
+            temp->next->f = *flwr;
+            delete flwr;
+            
             temp->next->next = NULL;
 
             size++;
@@ -134,10 +141,12 @@ bool FlowerList::add( string flowerName) { // Check "Feature List not empty" cas
     // If the algorithm reaches here, it means that the
     // alphabetical order is here for the desired flower
     FlowerNode* addThis = new FlowerNode();
-    delete addThis;
 
     if ( temp->next != NULL || size == 1 ) {
-        addThis->f = *(new Flower( flowerName));
+        Flower* flwr = new Flower( flowerName);
+        addThis->f = *flwr;
+        delete flwr;
+
         addThis->next = temp;
 
         if ( size == 1 ) {
@@ -149,7 +158,11 @@ bool FlowerList::add( string flowerName) { // Check "Feature List not empty" cas
     }
     else { // If we are at the end of the list
         temp->next = new FlowerNode();
-        temp->next->f = *(new Flower( flowerName));
+
+        Flower* flwr = new Flower( flowerName);
+        temp->next->f = *flwr;
+        delete flwr;
+
         temp->next->next = NULL;
     }
     

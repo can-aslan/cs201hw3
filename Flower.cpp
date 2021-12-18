@@ -125,11 +125,10 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
     }
 
     FeatureNode* temp = head;
-    FeatureNode* prev;
+    FeatureNode* prev = head;
 
     // If the Feature List is not empty
     while ( temp->feature < feature ) {
-        
         if ( temp->next != NULL ) {
             prev = temp;
             temp = temp->next;
