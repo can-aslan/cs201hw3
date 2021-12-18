@@ -129,7 +129,7 @@ bool FlowerList::add( string flowerName) { // Check "Feature List not empty" cas
             Flower* flwr = new Flower( flowerName);
             temp->next->f = *flwr;
             delete flwr;
-            
+
             temp->next->next = NULL;
 
             size++;
@@ -237,45 +237,22 @@ bool FlowerList::retrieve( string flowerName, Flower& flower) const {
     if ( size < 1 ) {
         return false;
     }
-    cout << "hi" << endl;
+    
     // Linear pass over the Linked List to see if the flower already exists (for simplicity)
-    FlowerNode* checkFlower = new FlowerNode();
-    cout << "hi" << endl;
-    checkFlower->f = head->f;
-    cout << "hi" << endl;
-    checkFlower->next = head->next;
-    cout << "hi" << endl;
+    FlowerNode* checkFlower = head;
 
     for ( int i = 0; i < size; i++ ) {
-        cout << "i: " << i << endl;
         if ( checkFlower->f.getName() != flowerName && checkFlower->next != NULL ) {
-            cout << "if1 " << i << endl;
             checkFlower->f = checkFlower->next->f;
-            cout << "if2 " << i << endl;
             checkFlower->next = checkFlower->next->next;
-            cout << "if3 " << i << endl;
         }
         else if ( checkFlower->f.getName() == flowerName ) {
-            cout << "elseif " << i << endl;
-            if ( &flower != NULL ) {
-                cout << "elseif if1" << i << endl;
-                delete &flower;
-                cout << "elseif if2" << i << endl;
-                flower = checkFlower->f;
-                cout << "elseif if3" << i << endl;
-            }
-            else {
-                cout << "elseif else1" << i << endl;
-                flower = checkFlower->f;
-                cout << "elseif else2" << i << endl;
-            }
+            flower = checkFlower->f;
             return true;
         }
     }
 
-    cout << "adios 1" << endl;
     delete checkFlower;
-    cout << "adios 2" << endl;
     return false;
 }
 

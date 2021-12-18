@@ -24,17 +24,17 @@ int main() {
     list.printFlowers();
     cout << endl;
 
-    list.remove( "amogus");
+    //list.remove( "cornelius");
     list.printFlowers();
     cout << endl;
 
-    /*Flower* f = new Flower;
+    Flower* f = new Flower();
     if ( list.retrieve( "amogus", *f) ) {
         f->add( "impostor");
         list.printFlowers();
     }
-    
-    delete f;*/
+
+    delete f;
     cout << "Test SUCCESSFULLY completed!" << endl;
     /*
     Flower* f = new Flower( "impostor");
