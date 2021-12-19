@@ -288,17 +288,17 @@ void FlowerList::printFlowers() const {
         printer.f = head->f;
         printer.next = head->next;
         
-        for ( int i = 0; i < (size - 1); i++ ) {
+        for ( int i = 0; i < size; i++ ) {
             cout << printer.f.printFlower() << endl;
-            printer.f = printer.next->f;
-            printer.next = printer.next->next;
+            if ( printer.next != NULL ) {
+                printer.f = printer.next->f;
+                printer.next = printer.next->next;
+            }
         }
-
-        cout << printer.f.printFlower() << endl;
     }
 }
 
-bool FlowerList::take( string flowerName, Flower*& flower) {
+bool FlowerList::take( string flowerName, Flower*& flower) { // Change return type to Flower* later and parameters to only string flowerName
     transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower);
 
     if ( size < 1 || !doesFlowerExistConst( flowerName) ) {
@@ -323,28 +323,26 @@ bool FlowerList::take( string flowerName, Flower*& flower) {
     return false;
 }
 
-bool FlowerList::takeByIndex( int indexInLinkedList, Flower*& flower) {
+Flower* FlowerList::takeByIndex( int indexInLinkedList) const {
     if ( size < 1 || indexInLinkedList > size ) {
-        return false;
+        return NULL;
     }
     
     // Linear pass over the Linked List to see if the flower already exists (for simplicity)
     FlowerNode* checkFlower = head;
 
-    for ( int i = 0; i < indexInLinkedList; i++ ) {
+    for ( int i = 0; i < indexInLinkedList + 1; i++ ) {
         if ( i == indexInLinkedList ) {
-            flower = &(checkFlower->f);
-            return true;
+            return &(checkFlower->f);
         }
         else if ( checkFlower->next != NULL ) {
             checkFlower->f = checkFlower->next->f;
             checkFlower->next = checkFlower->next->next;
         }
         else {
-            delete checkFlower;
-            return false;
+            return NULL;
         }
     }
 
-    return false;
+    return NULL;
 }

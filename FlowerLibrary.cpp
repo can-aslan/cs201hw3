@@ -97,35 +97,54 @@ void FlowerLibrary::removeFeature(string name, string feature) {
 void FlowerLibrary::findFlowers(string feature) const {
     transform( feature.begin(), feature.end(), feature.begin(), ::tolower);
 
-    FlowerList flowersCopy = flowers;
+    int flowersFound = 0;
+    Flower* f = flowers.takeByIndex( 0);
+    cout << feature << " flowers: ";
+
+    for ( int i = 0; i < flowers.getLength(); i++ ) {
+        f = flowers.takeByIndex( i);
+        if ( f != NULL ) {
+            if ( f->doesFeatureExist( feature) ) {
+                flowersFound++;
+                cout << f->getName() << ", ";
+            }
+        }
+    }
+
+    if ( !flowersFound ) {
+        cout << "there is no such flower" << endl;
+    }
+
+    /*FlowerList flowersCopy = flowers;
     FlowerList flowersToPrint = flowers;
     
     int size = flowersCopy.getLength();
+    int sizeToPrint = flowersCopy.getLength();
     Flower* f;
 
     for ( int i = 0; i < size; i++ ) { // Linear pass over the copy Flower List to find desired flowers
         if ( flowersCopy.takeByIndex( i, f) ) {
             if ( !(f->doesFeatureExist( feature)) ) {
                 flowersToPrint.remove( f->getName());
-                size--;
+                sizeToPrint--;
             }
         }
     }
 
-    if ( size == 0 ) {
+    if ( sizeToPrint == 0 ) {
         cout << feature << " flowers: there is no such flower" << endl;
     }
     else {
         cout << feature << " flowers: ";
 
         Flower* toPrint;
-        for ( int i = 0; i < size - 1; i++ ) { // Linear pass over the to-be-printed Flower List to find desired flowers
+        for ( int i = 0; i < sizeToPrint - 1; i++ ) { // Linear pass over the to-be-printed Flower List to find desired flowers
             flowersToPrint.takeByIndex( i, toPrint);
             cout << toPrint->getName() << ", ";
         }
 
-        flowersToPrint.takeByIndex( (size - 1), toPrint);
+        flowersToPrint.takeByIndex( (sizeToPrint - 1), toPrint);
         cout << toPrint->getName() << endl;
-    }
+    }*/
     
 }

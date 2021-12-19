@@ -159,7 +159,9 @@ int main() {
 
     // Testing add feature
     cout << endl;
-
+    cout << "agogus" << endl;
+    L.listFlowers();
+    cout << endl;
     cout << "Testing add feature" << endl;
     cout << endl;
 
@@ -187,7 +189,9 @@ int main() {
 
     L.listFeatures("calla lilly");
     cout << endl;
-
+        cout << "agogus" << endl;
+    L.listFlowers();
+    cout << endl;
     // Testing remove feature
     cout << endl;
 
@@ -199,6 +203,8 @@ int main() {
     L.listFeatures("magnolia");
 
     // Testing finding flowers
+    cout << "agogus" << endl;
+    L.listFlowers();
     cout << endl;
 
     cout << "Testing finding flowers" << endl;
@@ -209,6 +215,6 @@ int main() {
     cout << endl;
 
     L.findFlowers("white");
-    cout << "Test successfully completed!";
+    cout << "Test successfully completed!" << endl;
     return 0;
 }
