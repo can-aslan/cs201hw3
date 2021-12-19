@@ -40,7 +40,7 @@ FlowerList::FlowerList( const FlowerList& aList) { // Deep copy
         for ( int i = 0; i < (size - 1); i++ ) {
             current->next = new FlowerNode();
             current->next->f = currentAFlower->next->f;
-
+            
             if ( currentAFlower->next != NULL ) {
                 currentAFlower = currentAFlower->next;
             }
@@ -177,8 +177,9 @@ bool FlowerList::add( string flowerName) { // Check "Flower List not empty" case
             addThis->next = NULL;
         }
         else {
+            FlowerNode* temporary = prev->next;
             prev->next = addThis;
-            addThis->next = NULL;
+            addThis->next = temporary;
         }
     }
     else { // If we are at the end of the list

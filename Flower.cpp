@@ -263,11 +263,8 @@ Flower& Flower::operator=( const Flower& right) { // Deep copy
         head = new FeatureNode();
         head->feature = right.head->feature;
            
-        FeatureNode* current;
-        FeatureNode* currentAFlower;
-
-        current = head;
-        currentAFlower = right.head;
+        FeatureNode* current = head;
+        FeatureNode* currentAFlower = right.head;
 
         for ( int i = 0; i < (size - 1); i++ ) {
             current->next = new FeatureNode();
@@ -290,6 +287,6 @@ Flower& Flower::operator=( const Flower& right) { // Deep copy
     else { // If size < 1, in other words, if the list is empty
         head = NULL;
     }
-
+    
     return *this;
 }
