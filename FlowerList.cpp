@@ -173,8 +173,8 @@ bool FlowerList::add( string flowerName) { // Check "Flower List not empty" case
         delete flwr;
 
         if ( size == 1 ) {
-            head = addThis;
-            addThis->next = temp;
+            head->next = addThis;
+            addThis->next = NULL;
         }
         else {
             prev->next = addThis;
