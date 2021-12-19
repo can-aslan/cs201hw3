@@ -44,7 +44,7 @@ void FlowerLibrary::removeFlower(string name) {
     transform( name.begin(), name.end(), name.begin(), ::tolower);
 
     if ( flowers.remove( name) ) {
-        cout << name << "  has been removed from the library." << endl;
+        cout << name << " has been removed from the library." << endl;
     }
     else {
         cout << name << " cannot be removed because it's not in the library." << endl;

@@ -149,19 +149,20 @@ bool FlowerList::add( string flowerName) { // Check "Flower List not empty" case
             temp = temp->next;
         }
         else { // If there are no flowers left, add the feature to the end of the list
-            temp->next = new FlowerNode();
+            FlowerNode* addThis = new FlowerNode();
 
             Flower* flwr = new Flower( flowerName);
-            temp->next->f = *flwr;
+            addThis->f = *flwr;
             delete flwr;
 
-            temp->next->next = NULL;
+            addThis->next = NULL;
+            temp->next = addThis;
 
             size++;
             return true;
         }
     }
-    
+
     // If the algorithm reaches here, it means that the
     // alphabetical order is here for the desired flower
     FlowerNode* addThis = new FlowerNode();
@@ -171,13 +172,13 @@ bool FlowerList::add( string flowerName) { // Check "Flower List not empty" case
         addThis->f = *flwr;
         delete flwr;
 
-        addThis->next = temp;
-
         if ( size == 1 ) {
             head = addThis;
+            addThis->next = temp;
         }
         else {
             prev->next = addThis;
+            addThis->next = NULL;
         }
     }
     else { // If we are at the end of the list
@@ -298,7 +299,7 @@ void FlowerList::printFlowers() const {
 
 bool FlowerList::take( string flowerName, Flower*& flower) {
     transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower);
-    
+
     if ( size < 1 || !doesFlowerExistConst( flowerName) ) {
         return false;
     }
