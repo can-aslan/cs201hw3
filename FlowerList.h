@@ -12,7 +12,7 @@ class FlowerList {
         bool isEmpty() const;
         int getLength() const;
         bool retrieve(string flowerName, Flower& flower) const;
-        bool take( string flowerName, Flower*& flower);
+        Flower* take( string flowerName);
         Flower* takeByIndex( int indexInLinkedList) const;
         bool add(string flowerName);
         bool remove(string flowerName);

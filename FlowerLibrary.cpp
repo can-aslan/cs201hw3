@@ -73,8 +73,8 @@ void FlowerLibrary::addFeature(string name,string feature) {
 
     Flower* f;
 
-    if ( flowers.take( name, f) ) {
-        f->add( feature);
+    if ( flowers.take( name) != NULL ) {
+        flowers.take( name)->add( feature);
     }
     else {
         cout << name << " isn't found in the library" << endl;
@@ -86,8 +86,8 @@ void FlowerLibrary::removeFeature(string name, string feature) {
 
     Flower* f;
 
-    if ( flowers.take( name, f) ) {
-        f->remove( feature);
+    if ( flowers.take( name) != NULL ) {
+        flowers.take( name)->remove( feature);
     }
     else {
         cout << name << " isn't found in the library" << endl;

@@ -298,11 +298,11 @@ void FlowerList::printFlowers() const {
     }
 }
 
-bool FlowerList::take( string flowerName, Flower*& flower) { // Change return type to Flower* later and parameters to only string flowerName
+Flower* FlowerList::take( string flowerName) { // Change return type to Flower* later and parameters to only string flowerName
     transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower);
 
     if ( size < 1 || !doesFlowerExistConst( flowerName) ) {
-        return false;
+        return NULL;
     }
     
     // Linear pass over the Linked List to see if the flower already exists (for simplicity)
@@ -314,13 +314,12 @@ bool FlowerList::take( string flowerName, Flower*& flower) { // Change return ty
             checkFlower->next = checkFlower->next->next;
         }
         else if ( checkFlower->f.getName() == flowerName ) {
-            flower = &(checkFlower->f);
-            return true;
+            return &(checkFlower->f);
         }
     }
 
     delete checkFlower;
-    return false;
+    return NULL;
 }
 
 Flower* FlowerList::takeByIndex( int indexInLinkedList) const {
