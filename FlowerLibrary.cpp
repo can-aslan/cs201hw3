@@ -58,13 +58,13 @@ void FlowerLibrary::listFlowers() const {
 void FlowerLibrary::listFeatures(string name) const {
     transform( name.begin(), name.end(), name.begin(), ::tolower);
 
-    Flower f;
+    Flower* f = flowers.take( name);
 
-    if ( !flowers.retrieve(name, f) ) {
+    if ( !f ) {
         cout << name << " isn't found in the library" << endl;
     }
     else {
-        cout << f.printFlower() << endl;
+        cout << f->printFlower() << endl;
     }
 }
 
@@ -101,14 +101,23 @@ void FlowerLibrary::findFlowers(string feature) const {
         f = flowers.takeByIndex( i);
         if ( f != NULL ) {
             if ( f->doesFeatureExist( feature) ) {
+                if ( !flowersFound ) {
+                    cout << f->getName();
+                }
+                else {
+                    cout << ", " << f->getName();
+                }
+
                 flowersFound++;
-                cout << f->getName() << ", ";
             }
         }
     }
 
     if ( !flowersFound ) {
         cout << "there is no such flower" << endl;
+    }
+    else {
+        cout << endl;
     }
 
     /*FlowerList flowersCopy = flowers;

@@ -283,21 +283,18 @@ void FlowerList::printFlowers() const {
         cout << "No flowers in the library." << endl;
     }
     else {
-        FlowerNode printer;
-        printer.f = head->f;
-        printer.next = head->next;
+        FlowerNode* printer = head;
         
         for ( int i = 0; i < size; i++ ) {
-            cout << printer.f.printFlower() << endl;
-            if ( printer.next != NULL ) {
-                printer.f = printer.next->f;
-                printer.next = printer.next->next;
+            if ( printer != NULL ) {
+                cout << printer->f.printFlower() << endl;
+                printer = printer->next;
             }
         }
     }
 }
 
-Flower* FlowerList::take( string flowerName) { // Change return type to Flower* later and parameters to only string flowerName
+Flower* FlowerList::take( string flowerName) const { // Change return type to Flower* later and parameters to only string flowerName
     transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower);
 
     if ( size < 1 || !doesFlowerExistConst( flowerName) ) {
@@ -309,7 +306,6 @@ Flower* FlowerList::take( string flowerName) { // Change return type to Flower* 
 
     for ( int i = 0; i < size; i++ ) {
         if ( checkFlower->f.getName() != flowerName && checkFlower != NULL ) {
-            //checkFlower->f = checkFlower->next->f;
             checkFlower = checkFlower->next;
         }
         else if ( checkFlower->f.getName() == flowerName ) {
@@ -333,7 +329,6 @@ Flower* FlowerList::takeByIndex( int indexInLinkedList) const {
             return &(checkFlower->f);
         }
         else if ( checkFlower != NULL ) {
-            //checkFlower->f = checkFlower->next->f;
             checkFlower = checkFlower->next;
         }
         else {
