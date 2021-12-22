@@ -38,7 +38,6 @@ void FlowerLibrary::addFlower(string name) {
     else {
         cout << name << " cannot be added into the library because it already exists." << endl;
     }
-    listFlowers();
 }
 
 void FlowerLibrary::removeFlower(string name) {
