@@ -131,6 +131,18 @@ bool FlowerList::add( string flowerName) { // Check "Flower List not empty" case
         return true;
     }
 
+    if ( head->f.getName() > flowerName ) {
+        FlowerNode* addThis = new FlowerNode();
+
+        addThis->f = Flower( flowerName);
+        addThis->next = head;
+
+        head = addThis;
+        
+        size++;
+        return true;
+    }
+
     FlowerNode* temp = head;
     FlowerNode* prev = head;
     

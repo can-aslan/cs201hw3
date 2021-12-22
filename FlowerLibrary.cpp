@@ -38,6 +38,7 @@ void FlowerLibrary::addFlower(string name) {
     else {
         cout << name << " cannot be added into the library because it already exists." << endl;
     }
+    listFlowers();
 }
 
 void FlowerLibrary::removeFlower(string name) {
@@ -52,7 +53,10 @@ void FlowerLibrary::removeFlower(string name) {
 }
 
 void FlowerLibrary::listFlowers() const {
+    cout << "[---------------------------------------------]" << endl;
     flowers.printFlowers();
+    cout << "[---------------------------------------------]" << endl;
+
 }
 
 void FlowerLibrary::listFeatures(string name) const {
