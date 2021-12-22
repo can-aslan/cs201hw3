@@ -275,7 +275,6 @@ bool FlowerList::retrieve( string flowerName, Flower& flower) const {
         }
     }
 
-    delete checkFlower;
     return false;
 }
 
@@ -309,16 +308,15 @@ Flower* FlowerList::take( string flowerName) { // Change return type to Flower* 
     FlowerNode* checkFlower = head;
 
     for ( int i = 0; i < size; i++ ) {
-        if ( checkFlower->f.getName() != flowerName && checkFlower->next != NULL ) {
-            checkFlower->f = checkFlower->next->f;
-            checkFlower->next = checkFlower->next->next;
+        if ( checkFlower->f.getName() != flowerName && checkFlower != NULL ) {
+            //checkFlower->f = checkFlower->next->f;
+            checkFlower = checkFlower->next;
         }
         else if ( checkFlower->f.getName() == flowerName ) {
             return &(checkFlower->f);
         }
     }
 
-    delete checkFlower;
     return NULL;
 }
 
@@ -334,9 +332,9 @@ Flower* FlowerList::takeByIndex( int indexInLinkedList) const {
         if ( i == indexInLinkedList ) {
             return &(checkFlower->f);
         }
-        else if ( checkFlower->next != NULL ) {
-            checkFlower->f = checkFlower->next->f;
-            checkFlower->next = checkFlower->next->next;
+        else if ( checkFlower != NULL ) {
+            //checkFlower->f = checkFlower->next->f;
+            checkFlower = checkFlower->next;
         }
         else {
             return NULL;

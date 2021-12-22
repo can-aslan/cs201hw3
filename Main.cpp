@@ -159,22 +159,43 @@ int main() {
 
     // Testing add feature
     cout << endl;
-    cout << "agogus" << endl;
+    cout << "[-------------------------]" << endl;
     L.listFlowers();
     cout << endl;
+
     cout << "Testing add feature" << endl;
     cout << endl;
 
     L.addFlower("calla lilly");
     cout << endl;
 
-    L.listFeatures("magnolia");
+    cout << "[-------------------------]" << endl;
+    L.listFlowers();
     cout << endl;
 
+    L.listFeatures("magnolia");
+    cout << endl;
+cout << "[-------------------------]" << endl;
+    L.listFlowers();
+    cout << endl;
     L.addFeature("verbascum", "yellow");
+    cout << "[-------------------------]" << endl;
+    L.listFlowers();
+    cout << endl;
     L.addFeature("verbascum", "biennial");
+
+    cout << "[-------------------------]" << endl;
+    L.listFlowers();
+    cout << endl;
+
     L.addFeature("verbascum", "Perennial");
+    cout << "[-------------------------]" << endl;
+    L.listFlowers();
+    cout << endl;
     L.addFeature("calla lilly", "ornamental");
+    cout << "[-------------------------]" << endl;
+    L.listFlowers();
+    cout << endl;
     cout << endl;
 
     L.addFeature("calla lilly", "ornamental");
@@ -182,14 +203,21 @@ int main() {
     cout << endl;
 
     L.addFlower("magnolia");
+    cout << "[-------------------------]" << endl;
+    L.listFlowers();
+    cout << endl;
     L.addFeature("Magnolia", "ornamental");
+    cout << "[-------------------------]" << endl;
+    L.listFlowers();
+    cout << endl;
     L.addFeature("Magnolia", "citronella scented");
     L.listFeatures("magnolia");
     cout << endl;
 
     L.listFeatures("calla lilly");
     cout << endl;
-        cout << "agogus" << endl;
+
+    cout << "[-------------------------]" << endl;
     L.listFlowers();
     cout << endl;
     // Testing remove feature
@@ -200,10 +228,10 @@ int main() {
 
     L.removeFeature("magnolia", "citronella scented");
     L.removeFeature("magnolia", "yellow");
-    L.listFeatures("magnolia");
+    //L.listFeatures("magnolia");
 
     // Testing finding flowers
-    cout << "agogus" << endl;
+    cout << "[-------------------------]" << endl;
     L.listFlowers();
     cout << endl;
 

@@ -71,9 +71,7 @@ void FlowerLibrary::listFeatures(string name) const {
 void FlowerLibrary::addFeature(string name,string feature) {
     transform( name.begin(), name.end(), name.begin(), ::tolower);
 
-    Flower* f;
-
-    if ( flowers.take( name) != NULL ) {
+    if ( flowers.take( name) ) {
         flowers.take( name)->add( feature);
     }
     else {
@@ -84,9 +82,7 @@ void FlowerLibrary::addFeature(string name,string feature) {
 void FlowerLibrary::removeFeature(string name, string feature) {
     transform( name.begin(), name.end(), name.begin(), ::tolower);
 
-    Flower* f;
-
-    if ( flowers.take( name) != NULL ) {
+    if ( flowers.take( name) ) {
         flowers.take( name)->remove( feature);
     }
     else {
@@ -98,7 +94,7 @@ void FlowerLibrary::findFlowers(string feature) const {
     transform( feature.begin(), feature.end(), feature.begin(), ::tolower);
 
     int flowersFound = 0;
-    Flower* f = flowers.takeByIndex( 0);
+    Flower* f;
     cout << feature << " flowers: ";
 
     for ( int i = 0; i < flowers.getLength(); i++ ) {
