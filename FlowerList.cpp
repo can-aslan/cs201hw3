@@ -76,22 +76,17 @@ bool FlowerList::doesFlowerExist(string flowerName) {
     }
     
     // Linear pass over the Linked List to see if the flower already exists (for simplicity)
-    FlowerNode* checkFlower = new FlowerNode();
-    checkFlower->f = head->f;
-    checkFlower->next = head->next;
+    FlowerNode* checkFlower = head;
 
     for ( int i = 0; i < size; i++ ) {
-        if ( checkFlower->f.getName() != flowerName && checkFlower->next != NULL ) {
-            checkFlower->f = checkFlower->next->f;
-            checkFlower->next = checkFlower->next->next;
+        if ( checkFlower->f.getName() != flowerName && checkFlower != NULL ) {
+            checkFlower = checkFlower->next;
         }
         else if ( checkFlower->f.getName() == flowerName ) {
-            delete checkFlower;
             return true;
         }
     }
 
-    delete checkFlower;
     return false;
 }
 
@@ -129,10 +124,7 @@ bool FlowerList::add( string flowerName) { // Check "Flower List not empty" case
     if ( head == NULL ) { // If the Flower List is empty
         head = new FlowerNode();
 
-        Flower* flwr = new Flower( flowerName);
-        head->f = *flwr;
-        delete flwr;
-
+        head->f = Flower( flowerName);
         head->next = NULL;
 
         size++;
@@ -151,11 +143,9 @@ bool FlowerList::add( string flowerName) { // Check "Flower List not empty" case
         else { // If there are no flowers left, add the feature to the end of the list
             FlowerNode* addThis = new FlowerNode();
 
-            Flower* flwr = new Flower( flowerName);
-            addThis->f = *flwr;
-            delete flwr;
-
+            addThis->f = Flower( flowerName);
             addThis->next = NULL;
+
             temp->next = addThis;
 
             size++;
@@ -165,12 +155,10 @@ bool FlowerList::add( string flowerName) { // Check "Flower List not empty" case
 
     // If the algorithm reaches here, it means that the
     // alphabetical order is here for the desired flower
-    FlowerNode* addThis = new FlowerNode();
-
     if ( temp->next != NULL || size == 1 ) {
-        Flower* flwr = new Flower( flowerName);
-        addThis->f = *flwr;
-        delete flwr;
+        FlowerNode* addThis = new FlowerNode();
+
+        addThis->f = Flower( flowerName);
 
         if ( size == 1 ) {
             head->next = addThis;
@@ -185,10 +173,7 @@ bool FlowerList::add( string flowerName) { // Check "Flower List not empty" case
     else { // If we are at the end of the list
         temp->next = new FlowerNode();
 
-        Flower* flwr = new Flower( flowerName);
-        temp->next->f = *flwr;
-        delete flwr;
-
+        temp->next->f = Flower( flowerName);
         temp->next->next = NULL;
     }
     
@@ -223,23 +208,15 @@ bool FlowerList::remove( string flowerName) {
     }
 
     // Make a linear pass over the feature list to find the desired feature to remove
-    FlowerNode* current = new FlowerNode();
-    FlowerNode* previous = new FlowerNode();
-
-    previous->f = head->f;
-    previous->next = head->next;
-    current->f = head->next->f;
-    current->next = head->next->next;
+    FlowerNode* current = head->next;
+    FlowerNode* previous = head;
 
     for ( int i = 0; i < size - 1; i++ ) {
-        if ( current->f.getName() != flowerName && current->next != NULL ) {
-            previous->f = current->f;
-            previous->next = current->next;
-            
-            current->f = current->next->f;
-            current->next = current->next->next;
+        if ( current->f.getName() != flowerName && current != NULL ) {
+            previous = current;
+            current = current->next;
         }
-        else if ( current->f.getName() != flowerName && current->next == NULL ) {
+        else if ( current->f.getName() != flowerName && current == NULL ) {
             return false;
         }
         else if ( current->f.getName() == flowerName ) {
@@ -280,7 +257,7 @@ bool FlowerList::retrieve( string flowerName, Flower& flower) const {
 
 void FlowerList::printFlowers() const {
     if ( size < 1 ) {
-        cout << "No flowers in the library." << endl;
+        cout << "Library is empty." << endl;
     }
     else {
         FlowerNode* printer = head;

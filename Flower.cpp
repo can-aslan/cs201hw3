@@ -141,9 +141,9 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
     
     // If the algorithm reaches here, it means that the
     // alphabetical order is here for the desired feature
-    FeatureNode* addThis = new FeatureNode();
-
     if ( temp->next != NULL || size == 1 ) {
+        FeatureNode* addThis = new FeatureNode();
+        
         addThis->feature = feature;
         addThis->next = temp;
 
@@ -193,21 +193,13 @@ bool Flower::remove( string feature) {
     }
 
     // Make a linear pass over the feature list to find the desired feature to remove
-    FeatureNode* current = new FeatureNode();
-    FeatureNode* previous = new FeatureNode();
-
-    previous->feature = head->feature;
-    previous->next = head->next;
-    current->feature = head->next->feature;
-    current->next = head->next->next;
+    FeatureNode* current = head->next;
+    FeatureNode* previous = head;
 
     for ( int i = 0; i < size - 1; i++ ) {
-        if ( current->feature != feature && current->next != NULL ) {
-            previous->feature = current->feature;
-            previous->next = current->next;
-            
-            current->feature = current->next->feature;
-            current->next = current->next->next;
+        if ( current->feature != feature && current != NULL ) {
+            previous = current;
+            current = current->next;
         }
         else if ( current->feature != feature && current->next == NULL ) {
             cout << feature << " does not exist in " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
