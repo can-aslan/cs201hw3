@@ -6,23 +6,6 @@
 #include <iostream>
 using namespace std;
 
-/*class FlowerLibrary {
-    public:
-        + FlowerLibrary();
-        + ~FlowerLibrary();
-        - void addFlower(string name);
-        - void removeFlower(string name);
-        - void listFlowers() const;
-        - void listFeatures(string name) const;
-        - void addFeature(string name,string feature);
-        - void removeFeature(string name, string feature);
-        - void findFlowers(string feature) const;
-    private:
-        FlowerList flowers;
-        // ...
-        // you may define additional member functions and data members, if necessary
-};*/
-
 FlowerLibrary::FlowerLibrary() {
     FlowerList flowers;
 }
@@ -52,10 +35,7 @@ void FlowerLibrary::removeFlower(string name) {
 }
 
 void FlowerLibrary::listFlowers() const {
-    cout << "[---------------------------------------------]" << endl;
     flowers.printFlowers();
-    cout << "[---------------------------------------------]" << endl;
-
 }
 
 void FlowerLibrary::listFeatures(string name) const {
@@ -121,38 +101,5 @@ void FlowerLibrary::findFlowers(string feature) const {
     }
     else {
         cout << endl;
-    }
-
-    /*FlowerList flowersCopy = flowers;
-    FlowerList flowersToPrint = flowers;
-    
-    int size = flowersCopy.getLength();
-    int sizeToPrint = flowersCopy.getLength();
-    Flower* f;
-
-    for ( int i = 0; i < size; i++ ) { // Linear pass over the copy Flower List to find desired flowers
-        if ( flowersCopy.takeByIndex( i, f) ) {
-            if ( !(f->doesFeatureExist( feature)) ) {
-                flowersToPrint.remove( f->getName());
-                sizeToPrint--;
-            }
-        }
-    }
-
-    if ( sizeToPrint == 0 ) {
-        cout << feature << " flowers: there is no such flower" << endl;
-    }
-    else {
-        cout << feature << " flowers: ";
-
-        Flower* toPrint;
-        for ( int i = 0; i < sizeToPrint - 1; i++ ) { // Linear pass over the to-be-printed Flower List to find desired flowers
-            flowersToPrint.takeByIndex( i, toPrint);
-            cout << toPrint->getName() << ", ";
-        }
-
-        flowersToPrint.takeByIndex( (sizeToPrint - 1), toPrint);
-        cout << toPrint->getName() << endl;
-    }*/
-    
+    }    
 }

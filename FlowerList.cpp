@@ -138,7 +138,7 @@ bool FlowerList::add( string flowerName) { // Check "Flower List not empty" case
         addThis->next = head;
 
         head = addThis;
-        
+
         size++;
         return true;
     }
@@ -283,7 +283,7 @@ void FlowerList::printFlowers() const {
     }
 }
 
-Flower* FlowerList::take( string flowerName) const { // Change return type to Flower* later and parameters to only string flowerName
+Flower* FlowerList::take( string flowerName) const {
     transform( flowerName.begin(), flowerName.end(), flowerName.begin(), ::tolower);
 
     if ( size < 1 || !doesFlowerExistConst( flowerName) ) {

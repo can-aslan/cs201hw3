@@ -1,6 +1,6 @@
 // Yağız Can Aslan 22001943 CS201-3
 
-#include <bits/stdc++.h> // Ask TA if it is allowed!!!
+#include <bits/stdc++.h>
 #include <iostream>
 #include <string>
 #include "Flower.h"
@@ -105,7 +105,7 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
     transform( feature.begin(), feature.end(), feature.begin(), ::tolower); // Change feature to all lowercase
 
     if ( doesFeatureExist( feature) ) {
-        cout << feature << " already exists in " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+        cout << feature << " already exists in " << flowerName << endl;
         return false;
     }
 
@@ -115,7 +115,7 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
         head->next = NULL;
 
         size++;
-        cout << feature << " is added to " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+        cout << feature << " is added to " << flowerName << endl;
         return true;
     }
 
@@ -134,7 +134,7 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
             temp->next->next = NULL;
 
             size++;
-            cout << feature << " is added to " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+            cout << feature << " is added to " << flowerName << endl;
             return true;
         }
     }
@@ -143,7 +143,7 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
     // alphabetical order is here for the desired feature
     if ( temp->next != NULL || size == 1 ) {
         FeatureNode* addThis = new FeatureNode();
-        
+
         addThis->feature = feature;
         addThis->next = temp;
 
@@ -161,13 +161,13 @@ bool Flower::add( string feature) { // Check "Feature List not empty" case later
     }
     
     size++;
-    cout << feature << " is added to " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+    cout << feature << " is added to " << flowerName << endl;
     return true;
 }
 
 bool Flower::remove( string feature) {
     if ( !doesFeatureExist( feature) ) {
-        cout << feature << " does not exist in " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+        cout << feature << " does not exist in " << flowerName << endl;
         return false;
     }
 
@@ -177,7 +177,7 @@ bool Flower::remove( string feature) {
         head = NULL;
 
         size--;
-        cout << feature << " is removed from " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+        cout << feature << " is removed from " << flowerName << endl;
         return true;
     }
 
@@ -188,7 +188,7 @@ bool Flower::remove( string feature) {
         head = temp;
 
         size--;
-        cout << feature << " is removed from " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+        cout << feature << " is removed from " << flowerName << endl;
         return true;
     }
 
@@ -202,7 +202,7 @@ bool Flower::remove( string feature) {
             current = current->next;
         }
         else if ( current->feature != feature && current->next == NULL ) {
-            cout << feature << " does not exist in " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+            cout << feature << " does not exist in " << flowerName << endl;
             return false;
         }
         else if ( current->feature == feature ) {
@@ -210,12 +210,12 @@ bool Flower::remove( string feature) {
             delete current;
             
             size--;
-            cout << feature << " is removed from " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+            cout << feature << " is removed from " << flowerName << endl;
             return true;
         }    
     }
 
-    cout << feature << " does not exist in " << flowerName << endl; // TODO: MOVE THE MESSAGE TO FLOWERLIBRARY LATER
+    cout << feature << " does not exist in " << flowerName << endl;
     return false;
 }
 
